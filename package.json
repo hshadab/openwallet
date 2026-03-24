@@ -1,0 +1,21 @@
+{
+  "name": "jailbreak-proof-wallet",
+  "version": "0.1.0",
+  "description": "Jailbreak-Proof Wallet — OWS + ICME Preflight integration demo",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "compile-policy": "tsc && node dist/compile-policy.js",
+    "ui": "tsc && node dist/server.js",
+    "ui:mock": "tsc && node dist/server.js --mock"
+  },
+  "dependencies": {
+    "@open-wallet-standard/core": "^1.0.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.7.0"
+  }
+}

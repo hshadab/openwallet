@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.env
+policies/compiled.json
+policies/.icme-cache.json
+.ows-demo-vault/
