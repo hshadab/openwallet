@@ -1,6 +1,6 @@
 # Jailbreak-Proof Wallet
 
-A demo showing how math-enforced policy stops prompt injection attacks that trick AI agents into draining crypto wallets.
+AI agents can be tricked into signing malicious transactions. This demo shows how OWS (Open Wallet Standard) and ICME Preflight combine local key custody with formal verification to block prompt injection before `sign()` is ever called.
 
 ## What this does
 
