@@ -18,6 +18,8 @@
       <p class="header-sub">A prompt injection attack attempts to drain a wallet. See how math-enforced policy stops it where LLM judges fail.</p>
     </div>
     <div class="header-right">
+      <button id="btn-start" class="btn-primary">Start Demo</button>
+      <button id="btn-reset" class="btn-outline btn-sm" style="display:none">Reset</button>
       <button id="btn-policy" class="btn-outline">View Preflight policy</button>
     </div>
   </header>
@@ -55,15 +57,9 @@
       <div class="step-connector"></div>
       <div class="step-dot" data-step="5"><span>5</span></div>
     </div>
-    <button id="btn-reset" class="btn-outline btn-sm" style="display:none">Reset</button>
   </div>
   <div class="step-annotation" id="step-annotation">
     Press <strong>Start Demo</strong> to begin the simulation.
-  </div>
-
-  <!-- ─── Start Button ─────────────────────────────────── -->
-  <div class="start-row" id="start-row">
-    <button id="btn-start" class="btn-primary">Start Demo</button>
   </div>
 
   <!-- ─── Two-Column Comparison ────────────────────────── -->
@@ -121,7 +117,7 @@
   <!-- ─── ZK Proof Receipt ─────────────────────────────── -->
   <div class="proof-receipt" id="proof-receipt" style="display:none">
     <div class="proof-header">
-      <span class="proof-title">&#10003; ZK PROOF RECEIPT &mdash; INDEPENDENTLY VERIFIABLE</span>
+      <span class="proof-title">&#10003; ZK PROOF RECEIPT &mdash; AUDIT-READY, INDEPENDENTLY VERIFIABLE</span>
       <span class="proof-badge">TAMPER-PROOF</span>
     </div>
     <pre class="proof-json" id="proof-json"></pre>
@@ -129,18 +125,18 @@
       <button id="btn-verify" class="btn-verify" style="display:none">Verify Proof</button>
       <span id="verify-status" class="verify-status"></span>
     </div>
-    <p class="proof-note">This receipt proves the guardrail ran correctly &mdash; share it with any auditor, counterparty, or regulator. No trust in ICME required.</p>
+    <p class="proof-note">Cryptographic proof that the guardrail executed correctly. Exportable for regulators, auditors, or counterparties. No trust in any vendor required &mdash; math is the authority.</p>
   </div>
 
   <!-- ─── Summary Comparison ───────────────────────────── -->
   <div class="summary-row" id="summary-row" style="display:none">
     <div class="summary-card summary-red">
       <h3>LLM Judge &mdash; Attack Succeeded</h3>
-      <p>100 ETH drained to attacker wallet. No audit trail. No way to prove what happened or why the transaction was approved.</p>
+      <p>100 ETH drained to attacker wallet. No audit trail. No proof of what happened. No way to explain it to a regulator.</p>
     </div>
     <div class="summary-card summary-green">
       <h3>OWS + Preflight &mdash; Attack Blocked</h3>
-      <p>Funds intact. Policy enforced by math, not a model. ZK proof receipt stored &mdash; verifiable by any third party.</p>
+      <p>Funds intact. Private key never exposed. Policy enforced by Z3 solver, not an LLM opinion. ZK proof receipt on file &mdash; audit-ready from day one.</p>
     </div>
   </div>
 

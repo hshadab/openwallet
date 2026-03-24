@@ -50,6 +50,20 @@ User clicks "Verify Proof"
 
 - **Mock mode available.** Pass `--mock` to skip all external calls. Everything still works with scripted responses.
 
+## Why OWS needs formal verification
+
+OWS solves key custody: private keys are encrypted at rest, decrypted only to sign, held in protected memory, and wiped immediately. An agent never sees the key material.
+
+But key isolation doesn't stop a compromised agent from *requesting* a valid signature for a malicious transaction. If an attacker injects instructions into an invoice memo, an LLM-based guardrail can be convinced the transaction is legitimate. The agent calls `sign()`, OWS dutifully decrypts the key and signs, and the funds are gone.
+
+The OWS policy engine supports spending limits and allowlists, but the rules are only as strong as the enforcement layer. ICME Preflight adds the missing piece:
+
+1. **English → formal logic.** The policy is compiled to SMT-LIB constraints by ICME's `makeRules` endpoint.
+2. **Z3 solver evaluation.** Every signing request is checked by a theorem prover. The result is SAT (satisfies all constraints) or UNSAT (violates at least one). There is no "maybe" and no way to talk the solver into changing its answer.
+3. **ZK proof receipt.** Each check produces a cryptographic proof that the policy was evaluated correctly. Auditors, regulators, or counterparties can verify it independently — no trust in ICME or the agent operator required.
+
+This demo runs the full flow with real OWS SDK calls and real ICME API calls to show the integration end to end.
+
 ## Tech stack
 
 | Component | What it does |

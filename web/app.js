@@ -32,7 +32,7 @@ const RIGHT_STEPS = [
   {
     cls: "ows-neutral",
     icon: "&rarr;",
-    html: `OWS intercepts signing request. <code>PolicyContext</code> assembled.`,
+    html: `OWS intercepts signing request. <code>PolicyContext</code> assembled across 8-chain universal wallet.`,
   },
   {
     cls: "ows-neutral",
@@ -47,13 +47,13 @@ const RIGHT_STEPS = [
   },
   {
     cls: "ows-good",
-    icon: "&rarr;",
-    html: `OWS policy returned <code>{ allow: false }</code>. <code>sign()</code> aborted.`,
+    icon: "&#128274;",
+    html: `<code>sign()</code> aborted. Private key never decrypted &mdash; zero exposure to agent process.`,
   },
   {
     cls: "ows-good",
     icon: "&#10003;",
-    html: `ZK proof receipt: <code>sha256:7f3a..c91b</code>. Wallet intact.`,
+    html: `ZK proof receipt issued. Audit-ready &mdash; exportable to regulators, auditors, or counterparties.`,
   },
 ];
 
@@ -61,8 +61,8 @@ const STEP_ANNOTATIONS = [
   `<strong>STEP 1</strong> &mdash; Attack payload injected via invoice memo. Both wallets receive the same signing request.`,
   `<strong>STEP 2</strong> &mdash; Left: LLM judge reasons about the request. Right: OWS sends to Preflight policy executable.`,
   `<strong>STEP 3</strong> &mdash; Left: LLM approves (it was tricked). Right: Z3 returns UNSAT &mdash; destination not in allowlist.`,
-  `<strong>STEP 4</strong> &mdash; Left: Transaction signed and broadcast. Right: OWS blocks the signing call.`,
-  `<strong>STEP 5</strong> &mdash; Funds drained. No audit trail. No receipt. Versus: funds secure, ZK proof receipt stored, independently verifiable.`,
+  `<strong>STEP 4</strong> &mdash; Left: Transaction signed and broadcast. Right: OWS blocks signing &mdash; private key never leaves the encrypted vault.`,
+  `<strong>STEP 5</strong> &mdash; Funds drained. No audit trail. Versus: funds secure, ZK proof receipt stored &mdash; verifiable by any auditor, regulator, or counterparty.`,
 ];
 
 // ─── ZK Proof Receipt data ───────────────────────────
@@ -92,7 +92,6 @@ const btnCloseModal = document.getElementById("btn-close-modal");
 const policyModal = document.getElementById("policy-modal");
 const policyText = document.getElementById("policy-text");
 const stepAnnotation = document.getElementById("step-annotation");
-const startRow = document.getElementById("start-row");
 const leftSteps = document.getElementById("left-steps");
 const rightSteps = document.getElementById("right-steps");
 const badgeLeft = document.getElementById("badge-left");
@@ -295,9 +294,7 @@ async function verifyProof() {
 async function startDemo() {
   if (running) return;
   running = true;
-  btnStart.disabled = true;
-  btnStart.classList.add("running");
-  btnStart.textContent = "Running…";
+  btnStart.style.display = "none";
 
   // Reset UI
   leftSteps.innerHTML = "";
@@ -444,14 +441,12 @@ async function startDemo() {
   // ── Done ───────────────────────────────────────
   btnReset.style.display = "inline-block";
   running = false;
-  btnStart.disabled = false;
-  btnStart.classList.remove("running");
-  btnStart.textContent = "Start Demo";
 }
 
 // ─── Reset ───────────────────────────────────────────
 
 function resetDemo() {
+  btnStart.style.display = "inline-block";
   leftSteps.innerHTML = "";
   rightSteps.innerHTML = "";
   badgeLeft.style.display = "none";
